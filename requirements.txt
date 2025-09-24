@@ -1,7 +1,7 @@
-Flask>=2.0
-authlib>=1.2
-pymongo>=4.0
-apscheduler>=3.9
-selenium>=4.10
-webdriver-manager>=4.0
-python-dotenv>=1.0
+Flask
+gunicorn
+python-dotenv
+authlib
+pymongo
+apscheduler
+selenium
