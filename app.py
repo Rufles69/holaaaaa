@@ -34,7 +34,8 @@ MONGO_URL = os.getenv("MONGO_URL")  # Railway: set this to ${MongoDB.MONGO_URL}
 if not MONGO_URL:
     raise RuntimeError("Set MONGO_URL in environment (.env or Railway env)")
 mongo = MongoClient(MONGO_URL)
-db = mongo.get_database()  # use default DB from connection string
+db = mongo.get_database("BaseDeDatosDeRufles")
+  # use default DB from connection string
 tareas_col = db["tareas"]
 
 # ---------------- Selenium driver factory ----------------
@@ -305,10 +306,8 @@ def ver_tareas():
 import atexit
 atexit.register(lambda: scheduler.shutdown(wait=False))
 
+import os
+
 if __name__ == "__main__":
-    # run one job at startup (optional)
-    try:
-        job_scrape_and_store()
-    except Exception as e:
-        print("Initial job failed:", e)
-    app.run(host="0.0.0.0", port=int(os.getenv("PORT", 5000)), debug=False)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
