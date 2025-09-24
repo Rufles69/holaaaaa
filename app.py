@@ -40,7 +40,7 @@ tareas_col = db["tareas"]
 # ---------------- Selenium driver factory ----------------
 def make_driver():
     """Create a headless Chrome/Chromium WebDriver using webdriver-manager.
-       En Docker se usa /usr/bin/chromium-browser si existe.
+       In Docker se usa /usr/bin/chromium-browser si existe.
     """
     opts = Options()
     chrome_bin = os.getenv("CHROME_BINARY", "/usr/bin/chromium-browser")
@@ -55,20 +55,15 @@ def make_driver():
     opts.add_argument("--disable-extensions")
     opts.add_argument("--disable-background-networking")
 
-    # Instalar/descargar el chromedriver
-    driver_path = ChromeDriverManager().install()
+    # --- Fix permisos de chromedriver ---
+    from pathlib import Path
+    path = ChromeDriverManager().install()
+    Path(path).chmod(0o755)   # da permisos de ejecución
+    service = Service(path)
 
-    # A veces webdriver_manager devuelve un archivo de texto (THIRD_PARTY_NOTICES)
-    if not os.path.basename(driver_path).startswith("chromedriver"):
-        for root, dirs, files in os.walk(os.path.dirname(driver_path)):
-            for f in files:
-                if f == "chromedriver" or f.startswith("chromedriver"):
-                    driver_path = os.path.join(root, f)
-                    break
-
-    service = Service(driver_path)
     driver = webdriver.Chrome(service=service, options=opts)
     return driver
+
 
 # ---------------- Helper DB functions ----------------
 def upsert_tarea(t):
