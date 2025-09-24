@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mb-3">📅 Horarios</h2>
+
+{% for uni, clases in horarios.items() %}
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            {{ uni }}
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Materia</th>
+                        <th>Día</th>
+                        <th>Hora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for clase in clases %}
+                    <tr>
+                        <td>{{ clase.materia }}</td>
+                        <td>{{ clase.dia }}</td>
+                        <td>{{ clase.hora }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

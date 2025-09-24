@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f9f9f9;
+    color: #333;
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    background: #6200ea;
+    color: white;
+    padding: 1rem;
+  }
+  .navbar a {
+    color: white;
+    margin-right: 1rem;
+    text-decoration: none;
+  }
+  .card {
+    background: white;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .dark-mode {
+    background: #121212;
+    color: white;
+  }
+  .dark-mode .card {
+    background: #1e1e1e;
+  }
+  

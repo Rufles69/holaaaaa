@@ -1,0 +1,16 @@
+# Ignorar variables de entorno
+.env
+*.env
+
+# Ignorar compilados de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorar entorno virtual
+venv/
+.venv/
+
+# Ignorar cosas de Selenium
+drivers/
