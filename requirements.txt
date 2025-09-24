@@ -1,7 +1,8 @@
-Flask
-gunicorn
-python-dotenv
+flask
 authlib
+selenium
+python-dotenv
 pymongo
 apscheduler
-selenium
+gunicorn
+requests
